@@ -1,0 +1,15 @@
+{{ $count := .Get "count" | default 6 }}
+{{ $tag := .Get "tag" }}
+<!-- {{ $related := (where .Site.RegularPages "Type" "blog") }} -->
+<!-- {{ $related := .Site.RegularPages.RelatedTo ( keyVals "tags" "hugo") }} -->
+<!-- {{ $related := where .Site.RegularPages ".Params.tags" "eq" "hugo" }} -->
+
+{{ if .IsNamedParams }}
+<ul>
+  {{ range first $count .Site.Taxonomies.tags.video }}
+      <li><a href="{{ .Page.RelPermalink }}">{{ .Page.Title }}</a></li>
+  {{ end }}
+</ul>
+{{ else }}
+{{ errorf "missing value for param 'name': %s" .Position }}
+{{ end }}
