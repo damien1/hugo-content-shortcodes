@@ -5,11 +5,14 @@
 <!-- {{ $related := where .Site.RegularPages ".Params.tags" "eq" "hugo" }} -->
 
 {{ if .IsNamedParams }}
-<ul>
-  {{ range first $count .Site.Taxonomies.tags.video }}
-      <li><a href="{{ .Page.RelPermalink }}">{{ .Page.Title }}</a></li>
-  {{ end }}
-</ul>
+<div class="widget mb-5">
+  <h4 class="mb-4 widget-title">Related Posts</h4>
+    <ul>
+      {{ range first $count .Site.Taxonomies.tags.video }}
+          <li><a href="{{ .Page.RelPermalink }}">{{ .Page.Title }}</a></li>
+      {{ end }}
+    </ul>
+</div>
 {{ else }}
 {{ errorf "missing value for param 'name': %s" .Position }}
 {{ end }}
