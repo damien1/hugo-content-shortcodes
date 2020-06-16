@@ -1,0 +1,17 @@
+{{ $count := .Get "count" | default 6 }}
+{{ $tag := .Get "tag" | default "hugo" }}
+<!-- {{ $related := (where .Site.RegularPages "Type" "blog") }} -->
+<!-- {{ $related := .Site.RegularPages.RelatedTo ( keyVals "tags" "hugo") }} -->
+<!-- {{ $related := where .Site.RegularPages ".Params.tags" "eq" "hugo" }} -->
+
+{{ if .IsNamedParams }}
+<h2>What have I said about {{ humanize ($tag) }}?</h2>
+<ul class="list">
+  {{ range first $count (where (index .Site.Taxonomies.tags (lower $tag)).Pages "Type" "blog") }}
+      <li class="list"><a href="{{ .Page.RelPermalink }}">{{ .Page.Title }}</a></li>
+  {{ end }}
+</ul>
+{{ else }}
+Warning - check your tags or count
+{{ errorf "missing value for param 'name': %s" .Position }}
+{{ end }}
