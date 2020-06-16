@@ -1,17 +1,10 @@
-{{ $count := .Get "count" | default 6 }}
 
-    <div class="widget mb-5">
-      <h4 class="mb-4 widget-title">Related Posts</h4>
-      <ul class="list-unstyled">
-        {{ $related := (where (.Site.RegularPages.Related .) "Type" "blog") }}
-        {{ range first $count  $related }}
-        <li class="d-flex mb-4">
-          <div class="post-body">
-            <span class="text-capitalize">- {{ dateFormat "Monday, Jan 2, 2006" .Date }}</span>
-            <a href="{{ .Permalink }}">
-              <h5>{{ .Title }}</h5>
-            </a>
-          </div>
-        </li>{{ end }}
-      </ul>
-    </div>
+Hello
+
+{{ $related = .Site.Taxonomies.Pages }}
+
+{{ range $related }}
+    <li hugo-nav="{{ .RelPermalink}}">
+        <a href="{{ .Permalink}}">{{ .LinkTitle }}</a>
+    </li>
+{{ end }}
