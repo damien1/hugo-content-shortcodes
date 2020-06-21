@@ -1,13 +1,9 @@
-{{ $count := .Get "count" | default 6 }}
-{{ $tag := .Get "tag" | default "hugo" }}
-<!-- {{ $related := (where .Site.RegularPages "Type" "blog") }} -->
-<!-- {{ $related := .Site.RegularPages.RelatedTo ( keyVals "tags" "hugo") }} -->
-<!-- {{ $related := where .Site.RegularPages ".Params.tags" "eq" "hugo" }} -->
-
+{{ $count := .Get "count"}}
+{{ $tag := .Get "tag"}}
 {{ if .IsNamedParams }}
 <h2>What have I said about {{ humanize ($tag) }}?</h2>
 <ul class="list">
-  {{ range first $count (where (index .Site.Taxonomies.tags (lower $tag)).Pages "Type" "blog") }}
+  {{ range first $count (where (index .Site.Taxonomies.tags (lower $tag)).Pages "Type" "in" site.Params.mainSections) }} 
       <li class="list"><a href="{{ .Page.RelPermalink }}">{{ .Page.Title }}</a></li>
   {{ end }}
 </ul>
