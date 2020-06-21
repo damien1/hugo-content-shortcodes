@@ -1,0 +1,8 @@
+{{ $count := .Get "count" | default 3 }}
+<h3>Featured Posts</h3>
+<ul>
+  {{ range first $count .Site.Taxonomies.tags.featured }}
+      <li><a href="{{ .Page.RelPermalink }}">{{ .Page.Title }}</a>
+      </li>
+  {{ end }}
+</ul>
