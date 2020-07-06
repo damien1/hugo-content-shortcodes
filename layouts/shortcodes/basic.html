@@ -1,0 +1,11 @@
+
+Hello
+
+
+{{ $related := .Site.RegularPages.Related  }}
+
+{{ range $related }}
+    <li hugo-nav="{{ .RelPermalink}}">
+        <a href="{{ .Permalink}}">{{ .LinkTitle }}</a>
+    </li>
+{{ end }}
