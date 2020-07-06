@@ -1,3 +1,4 @@
+<!-- for how to use visit https://bit.ly/2YYrjRd -->
 {{ $image := .Get 0 }}
 {{ $alt := .Get 1 }}
 <img alt="{{ $alt }}" data-src="{{ $.Site.Params.cloudinary_base_url }}/w_auto,c_scale,f_auto,q_auto,dpr_auto{{ $image}}" class="cld-responsive" style="width:90%;">
