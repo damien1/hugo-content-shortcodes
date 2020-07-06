@@ -1,0 +1,7 @@
+<!-- for details on usage vist my site https://bit.ly/2CaakSY -->
+{{ $url := .Get "href" }}
+{{ $ga1 := .Get "ga1" }}
+{{ $ga2 := .Get "ga2" }}
+{{ $ga3 := .Get "ga3" }}
+{{ $text := .Get "text" }}
+<a onclick="ga('send', 'event', '{{ $ga1 }}', '{{ $ga2 }}', '{{ $ga3 }}');" href="{{ $url }}" target="_blank">{{ $text }}</a>
