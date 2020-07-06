@@ -1,9 +1,10 @@
 {{ $count := .Get "count"}}
 {{ $tag := .Get "tag"}}
 {{ if .IsNamedParams }}
+{{ $related := where (index .Site.Taxonomies.tags (lower $tag)).Pages "Type" "in" site.Params.mainSections}}
 <h2>What have I said about {{ humanize ($tag) }}?</h2>
 <ul class="list">
-  {{ range first $count (where (index .Site.Taxonomies.tags (lower $tag)).Pages "Type" "in" site.Params.mainSections) }} 
+  {{ range first $count $related }} 
       <li class="list"><a href="{{ .Page.RelPermalink }}">{{ .Page.Title }}</a></li>
   {{ end }}
 </ul>
