@@ -1,0 +1,8 @@
+{{ $content := .Get "section" }}
+{{ $count := .Get "count" }}
+<h2>What have I said about {{ humanize ($content) }}?</h2>
+<ul class="list">
+    {{ range first $count (where .Site.RegularPages "Type" "in" $content) }}
+      <li class="list"><a href="{{ .Page.RelPermalink }}">{{ .Page.Title }}</a></li>
+  {{ end }}
+</ul>
