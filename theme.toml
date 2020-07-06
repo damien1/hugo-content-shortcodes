@@ -1,17 +1,17 @@
-name = "Related-Shortcode"
+name = "Content Shortcodes"
 license = "MIT"
 licenselink = "Link to theme's license"
 description = "Theme Component"
-homepage = "Website of your theme"
+homepage = "https://damien.co"
 tags = ["blog", "company"]
 features = ["related", "theme-component", "shorcode"]
-min_version = "0.59.1"
+min_version = "0.60"
 
 
 # If the theme has a single author
 [author]
     name = "Damien Saunders"
-    homepage = "Your website"
+    homepage = "https://damien.co"
 
 # If porting an existing theme
 [original]
