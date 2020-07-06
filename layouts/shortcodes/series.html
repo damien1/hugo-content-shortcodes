@@ -1,15 +1,13 @@
 {{ if .Page.Params.series }}
     {{ $name := .Page.Params.series }}
     <hr/>
-	<p><a href="" id="series"></a>This is a post in the 
-	<b>{{$name}}</b> series.<br/>
-    Other posts in this series:</p>
-    {{ $name := $name | urlize }}
-    {{ $series := index .Site.Taxonomies.series $name }}
+	<p><a href="{{ `series/` | relLangURL }}{{ $name | urlize | lower }}" id="series">This is a post in the 
+	<b>{{$name}}</b></a> series.<br/>
+    Other posts in this series:
+    {{ $name := $name | urlize }}{{ $series := index .Site.Taxonomies.series $name }}
     <ul class="series">
     {{ range $series.Pages }}
-    	<li>{{.Date.Format "Jan 02, 2006"}} -
-    	<a href="{{.Permalink}}">{{.LinkTitle}}</a></li>
+    <li class="list"><a href="{{ .Page.RelPermalink }}">{{ .Page.Title }}</a></li>
     {{end}}
     </ul>
 {{ else }}
