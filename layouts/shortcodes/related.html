@@ -1,25 +1,19 @@
 {{ $taxo := .Get "taxo"}}
 {{ $count := .Get "count"}}
 {{ $term := .Get "term"}}
-{{ $ds_related := "" }}
 
-{{ if .IsNamedParams }}
   {{ if eq $taxo "tags" }} 
-      {{ $ds_related := where (index .Site.Taxonomies.tags (lower $term)).Pages "Type" "in" site.Params.mainSections }}
+      {{ $.Scratch.Add "range" (where (index .Site.Taxonomies.tags (lower $term)).Pages "Type" "in" site.Params.mainSections) }}
   {{ else if eq $taxo "categories"}}
-      {{ $ds_related := where (index .Site.Taxonomies.categories (lower $term)).Pages "Type" "in" site.Params.mainSections }}
+      {{ $.Scratch.Add "range" (where (index .Site.Taxonomies.categories (lower $term)).Pages "Type" "in" site.Params.mainSections) }}
   {{ else }}
-      Warning - invalid taxo
+      Warning - invalid taxo {{ $taxo }}
   {{ end }}
-
 
   <h2>What have I said about {{ humanize ($term) }}?</h2>
   <ul class="list">
-    {{ range first $count $ds_related }}
+    {{ range $.Scratch.Get "range" }}
         <li class="list"><a href="{{ .Page.RelPermalink }}">{{ .Page.Title }}</a></li>
     {{ end }}
   </ul>
-{{ else }}
-Warning - check your tags or count
-{{ errorf "missing value for param 'name': %s" .Position }}
-{{ end }}
+
