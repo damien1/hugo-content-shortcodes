@@ -1,4 +1,3 @@
-
 {{ if .Page.Params.series }}
     {{ $name := .Page.Params.series }}
     <hr/>
@@ -12,6 +11,6 @@
     {{end}}
     </ul>
 {{ else }}
-    Warning - check your tags or count
+    Warning - check your series as none found
     {{ errorf "missing value for param 'name': %s" .Position }}
 {{ end }}
